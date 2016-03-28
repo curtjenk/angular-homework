@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html ng-app="myApp">
+
+<head>
+    <title></title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
+    <script type="text/javascript" src="controller.js"></script>
+</head>
+
+<body ng-controller="myController">
+    <div>
+        <div id="labels" style="float: left;">
+            <p>
+                <label>Country</label>
+            </p>
+            <p>
+                <label>Population</label>
+            </p>
+            <p>
+                <label>Leader</label>
+            </p>
+            <p>
+                <label>Flag Colors</label>
+            </p>
+        </div>
+        <div id="inputs" style="float: left;">
+            <p>
+                <input type="text" ng-model="name" ng-blur="dataChange()"></input>
+            </p>
+            <p>
+                <input type="text" ng-model="population" ng-blur="dataChange()"></input>
+            </p>
+            <p>
+                <input type="text" ng-model="leader" ng-blur="dataChange()"></input>
+            </p>
+            <p>
+                <input type="text" ng-model="flagColors" ng-blur="dataChange()"></input>
+            </p>
+        </div>
+
+    </div>
+    <div style="clear: both;">
+        <form ng-submit="addCountry()">
+            <input type="submit" value="Add Country" style="background-color: lightgrey;">
+        </form>
+    </div>
+    <table border="1" style="margin-top: 10px;">
+        <thead>
+            <th>Country</th>
+            <th>Population</th>
+            <th>Leader</th>
+            <th>Flag Colors</th>
+        </thead>
+        <tr ng-repeat="country in countries track by $index">
+            <td>{{country.name}}</td>
+            <td>{{country.population}}</td>
+            <td>{{country.leader}}</td>
+            <td>{{country.flagColors}}</td>
+        </tr>
+    </table>
+</body>
+
+</html>
