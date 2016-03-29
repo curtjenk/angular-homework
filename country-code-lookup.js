@@ -249,10 +249,9 @@ var isoCountries = [
 
 var convertCountryCode = function(code) {
     var answer = '';
-    for (i = 0; i < $scope.isoCountries.length; i++) {
-        if ($scope.isoCountries[i].ccode === code) {
-            answer = $scope.isoCountries[i].cname;
-
+    for (i = 0; i < isoCountries.length; i++) {
+        if (isoCountries[i].ccode === code) {
+            answer = isoCountries[i].cname;
         }
     }
     return answer;
