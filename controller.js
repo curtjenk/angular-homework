@@ -2,15 +2,15 @@ var myApp = angular.module('myApp', []);
 
 myApp.controller('myController', function($scope, $http) {
 
-//these are in the country-code-lookup.js
+    //these are in the country-code-lookup.js
     $scope.isoCountries = isoCountries;
     $scope.convertCountryCode = convertCountryCode;
-//-------------------------
+    //-------------------------
 
     $scope.countries = [];
-    $scope.flag='';
+    $scope.flag = '';
 
-    $scope.sortField='name';
+    $scope.sortField = 'name';
 
     function Country(name, pop, leader, flag) {
         this.name = name;
@@ -24,7 +24,7 @@ myApp.controller('myController', function($scope, $http) {
     };
     $scope.countries.push(new Country('United States', '320,000,000', 'Barack Obama', 'flags/1x1/us.svg'));
     $scope.countries.push(new Country('Brazil', '200,000,000', 'El Presidente', 'flags/1x1/BR.svg'));
-     $scope.countries.push(new Country('Japan', '1,200,000,000', 'Abe', 'flags/1x1/us.svg'));
+    $scope.countries.push(new Country('Japan', '1,200,000,000', 'Abe', 'flags/1x1/us.svg'));
     $scope.countries.push(new Country('Germany', '1,200,000,000', 'Gauck', 'flags/1x1/us.svg'));
 
     //ng-blur
@@ -32,10 +32,9 @@ myApp.controller('myController', function($scope, $http) {
         // console.log($scope.name.length);
         // console.log($scope.population.length);
         // console.log($scope.leader.length);
-        // console.log($scope.flagColors.length);
+        console.log($scope.flag);
         if ($scope.name.length > 0 && $scope.population.length > 0 && $scope.leader.length > 0) {
-            var newCountry = new Country($scope.convertCountryCode($scope.name), 
-                      $scope.population, $scope.leader, $scope.flagColors, $scope.flag);
+            var newCountry = new Country($scope.convertCountryCode($scope.name), $scope.population, $scope.leader, $scope.flag);
             $scope.countries.push(newCountry);
             $scope.name = '';
             $scope.population = '';
@@ -55,6 +54,6 @@ myApp.controller('myController', function($scope, $http) {
     };
 
     $scope.getFlag = function(code) {
-        $scope.flag="flags/1x1/" + code + ".svg";
+        $scope.flag = "flags/1x1/" + code + ".svg";
     };
 });
