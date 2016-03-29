@@ -6,6 +6,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
     <script type="text/javascript" src="controller.js"></script>
+    <script type="text/javascript" src="country-code-lookup.js"></script>
 </head>
 
 <body ng-controller="myController">
@@ -26,19 +27,23 @@
         </div>
         <div id="inputs" style="float: left;">
             <p>
-                <input type="text" ng-model="name" ng-blur="dataChange()"></input>
+                <select ng-model="name" ng-init="name=''" ng-blur="dataChange()" ng-change="getFlag(name)">
+                    <option ng-repeat="code in isoCountries" value="{{code.ccode}}">{{code.cname}}</option>
+                </select>
             </p>
             <p>
-                <input type="text" ng-model="population" ng-blur="dataChange()"></input>
+                <input type="text" ng-model="population" ng-init="population=''" ng-blur="dataChange()"></input>
             </p>
             <p>
-                <input type="text" ng-model="leader" ng-blur="dataChange()"></input>
+                <input type="text" ng-model="leader" ng-init="leader=''" ng-blur="dataChange()"></input>
             </p>
             <p>
-                <input type="text" ng-model="flagColors" ng-blur="dataChange()"></input>
+                <input type="text" ng-model="flagColors" ng-init="flagColors=''" ng-blur="dataChange()"></input>
             </p>
         </div>
-
+    </div>
+    <div id="country-flag" style="float: left; margin-top: 15px; margin-left: 10px;">
+        <img style="display: inline-block; width: 1.33333333em; line-height: 1em;" ng-model="flag" ng-src={{flag}}>
     </div>
     <div style="clear: both;">
         <form ng-submit="addCountry()">
@@ -53,7 +58,7 @@
             <th>Flag Colors</th>
         </thead>
         <tr ng-repeat="country in countries track by $index">
-            <td>{{country.name}}</td>
+            <td><a href="" ng-click="removeCountry($index)">{{country.name}}</a></td>
             <td>{{country.population}}</td>
             <td>{{country.leader}}</td>
             <td>{{country.flagColors}}</td>
